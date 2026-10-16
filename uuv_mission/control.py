@@ -7,11 +7,13 @@ class PDController:
 
     def __init__(self, kp: float = 0.15, kd: float = 0.6) -> None:
         """Store the gains and start with no previous error."""
-        raise NotImplementedError
+        self.kp = kp
+        self.kd = kd
+        self.reset()
 
     def reset(self) -> None: 
         """Forget the previous error, ready for a new simulation."""
-        raise NotImplementedError
+        self.previous_error = 0.0
 
     def __call__(self, reference_t: float, observation_t: float) -> float:
         """Return the control action for the current time step."""
