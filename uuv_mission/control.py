@@ -17,7 +17,11 @@ class PDController:
 
     def __call__(self, reference_t: float, observation_t: float) -> float:
         """Return the control action for the current time step."""
-        raise NotImplementedError
+        error = reference_t - observation_t
+        action = self.kp * error + self.kd * (error - self.previous_error)
+        self.previous_error = error
+        return action 
+    
     
     
 
